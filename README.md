@@ -5,6 +5,7 @@ Event Manager Pro is a powerful, offline-first event management web application 
 
 
 🎯 Key Highlights
+<br>
 📱 Fully Responsive - Works seamlessly on mobile, tablet, and desktop
 
 🌍 Multi-Language Support - 8 languages including English, Hindi, Spanish, French, German, Chinese, Arabic, and Japanese
@@ -17,8 +18,9 @@ Event Manager Pro is a powerful, offline-first event management web application 
 
 💾 Offline-First - All data stored locally in your browser
 
-
+<br>
 ✨ Features
+<br>
 🏢 Company Profile Management
 Save company details (name, owner, email, phone, address)
 
@@ -27,8 +29,9 @@ GST/Tax number storage
 Logo URL support for branding
 
 Auto-populates in invoices
-
+<br>
 📅 Event Management
+<br>
 Add Events with comprehensive details:
 
 Event name, type, and priority (High/Medium/Low)
@@ -50,8 +53,9 @@ Quick Add - Create events in seconds
 Templates - Save and load event templates
 
 Conflict Detection - Prevents double-booking
-
+<br>
 📄 Professional Invoice Generation
+<br>
 Generate PDF invoices with all event details
 
 Company branding (name, logo, address, GST)
@@ -63,8 +67,9 @@ Professional table format
 Multi-page support for long invoices
 
 Download as PDF
-
+<br>
 🗺️ Location & Maps
+<br>
 Manual Address Input - Type any address
 
 Interactive Map Picker - Click on map to select location
@@ -74,7 +79,7 @@ Auto-Fetch Address - Reverse geocoding from map click
 Mini Map Preview - Shows selected location in form
 
 Event Map View - See event location on map
-
+<br>
 🌍 Multi-Language Support
 8 Languages supported:
 
@@ -99,8 +104,9 @@ Auto-detects browser language
 Saves language preference
 
 All UI elements translated
-
+<br>
 🎨 User Experience
+<br>
 Dark Mode - Easy on eyes, toggle anytime
 
 Responsive Design - Optimized for all screen sizes
@@ -110,8 +116,9 @@ Touch Friendly - Large touch targets for mobile
 Keyboard Navigation - Enter key support for forms
 
 Loading Indicators - Visual feedback for actions
-
+<br>
 📊 Event List & Management
+<br>
 Sort by Priority - High → Medium → Low
 
 Event Cards - Clean, organized display
@@ -129,8 +136,9 @@ Quick Actions on each event:
 Today's Events - Quick view of today's schedule
 
 Event Counter - Total events count
-
+<br>
 🆘 Emergency Kit
+<br>
 Store emergency contact numbers
 
 WiFi name and password
@@ -138,8 +146,9 @@ WiFi name and password
 Venue notes
 
 Quick access from any screen
-
+<br>
 💾 Data Persistence
+<br>
 LocalStorage - All data saved in browser
 
 Event History - Track changes (up to 10 versions)
@@ -151,8 +160,9 @@ Company Profile - Persistent company details
 Language Preference - Remembered across sessions
 
 Dark Mode Preference - Saved user preference
-
+<br>
 🚀 Installation
+<br>
 Option 1: Direct Download
 bash
 # Clone the repository
@@ -172,8 +182,9 @@ npm install -g live-server
 live-server
 Option 3: Any Web Server
 Simply upload all files to any web server or open index.html directly in your browser.
-
+<br>
 📂 Project Structure
+<br>
 text
 event-manager-pro/
 ├── index.html          # Main HTML file
@@ -181,5 +192,5 @@ event-manager-pro/
 ├── app.js              # Application logic with all features
 ├── README.md           # Project documentation
 └── assets/             # (Optional) Images, icons, etc.
-
+<br>
 Authour-ARYAN MOURYA
