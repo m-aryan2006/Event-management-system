@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Universal Management System</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- SPLASH SCREEN -->
+  <div id="splashScreen">
+    <div class="splash-content">
+      <div class="splash-logo">🇮🇳</div>
+      <div class="splash-title">Universal Management System</div>
+      <div class="splash-subtitle">One Platform - All Your Management Needs</div>
+      <div class="splash-bharat">
+        <i class="fas fa-heart" style="color: #ff6b6b;"></i>
+        Made in Bharat
+        <i class="fas fa-heart" style="color: #ff6b6b;"></i>
+      </div>
+      <div class="splash-flag">🕊️ जय हिंद 🇮🇳</div>
+      <div class="splash-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANAGEMENT SELECTION PAGE -->
+  <div id="managementSelectionPage" class="management-selection">
+    <div class="selection-container">
+      <div class="selection-header">
+        <h2><i class="fas fa-cubes"></i> Select Management Type</h2>
+        <p>Choose the management system you want to use</p>
+      </div>
+      
+      <div class="management-grid">
+        <div class="management-card" data-type="event">
+          <div class="card-icon">🎬</div>
+          <h3>Event Management</h3>
+          <p>Manage events, bookings, and attendees</p>
+          <span class="card-badge">Popular</span>
+        </div>
+        
+        <div class="management-card" data-type="hotel">
+          <div class="card-icon">🏨</div>
+          <h3>Hotel Management</h3>
+          <p>Manage rooms, bookings, and guests</p>
+          <span class="card-badge">Hotel</span>
+        </div>
+        
+        <div class="management-card" data-type="hospital">
+          <div class="card-icon">🏥</div>
+          <h3>Hospital Management</h3>
+          <p>Manage patients, doctors, appointments</p>
+          <span class="card-badge">Healthcare</span>
+        </div>
+        
+        <div class="management-card" data-type="school">
+          <div class="card-icon">🏫</div>
+          <h3>School Management</h3>
+          <p>Manage students, teachers, classes</p>
+          <span class="card-badge">Education</span>
+        </div>
+        
+        <div class="management-card" data-type="rental">
+          <div class="card-icon">🚗</div>
+          <h3>Car Rental Management</h3>
+          <p>Manage vehicles, bookings, customers</p>
+          <span class="card-badge">Rental</span>
+        </div>
+        
+        <div class="management-card" data-type="retail">
+          <div class="card-icon">🛒</div>
+          <h3>Retail Management</h3>
+          <p>Manage products, inventory, sales</p>
+          <span class="card-badge">Retail</span>
+        </div>
+        
+        <div class="management-card" data-type="construction">
+          <div class="card-icon">🏗️</div>
+          <h3>Construction Management</h3>
+          <p>Manage projects, materials, labor</p>
+          <span class="card-badge">Construction</span>
+        </div>
+        
+        <div class="management-card" data-type="hr">
+          <div class="card-icon">💼</div>
+          <h3>HR Management</h3>
+          <p>Manage employees, attendance, payroll</p>
+          <span class="card-badge">HR</span>
+        </div>
+        
+        <div class="management-card" data-type="banking">
+          <div class="card-icon">🏦</div>
+          <h3>Banking Management</h3>
+          <p>Manage accounts, transactions, loans</p>
+          <span class="card-badge">Finance</span>
+        </div>
+        
+        <div class="management-card" data-type="restaurant">
+          <div class="card-icon">🍽️</div>
+          <h3>Restaurant Management</h3>
+          <p>Manage menu, orders, tables</p>
+          <span class="card-badge">Food</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div class="app-container" id="appContainer" style="display:none;">
+    
+    <div class="system-badge" id="systemBadge">
+      <span id="systemTypeLabel">📋 Event Management</span>
+      <button id="changeSystemBtn" class="btn-change-system">
+        <i class="fas fa-exchange-alt"></i> Change
+      </button>
+    </div>
+    
+    <header class="app-header">
+      <h1><i class="fas fa-calendar-alt" id="systemIcon"></i> <span id="systemTitle">Event</span><span class="logo-light">Pro</span></h1>
+      <div style="display:flex; gap:6px; align-items:center;">
+        <div class="language-selector">
+          <button class="lang-btn" id="langToggle">
+            <i class="fas fa-globe"></i> <span id="currentLangLabel">EN</span>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <button class="lang-option active" data-lang="en">🇺🇸 English</button>
+            <button class="lang-option" data-lang="hi">🇮🇳 हिंदी</button>
+            <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+            <button class="lang-option" data-lang="fr">🇫🇷 Français</button>
+            <button class="lang-option" data-lang="de">🇩🇪 Deutsch</button>
+            <button class="lang-option" data-lang="zh">🇨🇳 中文</button>
+            <button class="lang-option" data-lang="ar">🇸🇦 العربية</button>
+            <button class="lang-option" data-lang="ja">🇯🇵 日本語</button>
+          </div>
+        </div>
+        <button class="dark-mode-toggle" id="darkModeToggle">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="badge-alert" id="todayAlertBtn">
+          <i class="fas fa-bell"></i> <span id="alertBadgeText">Today?</span>
+        </button>
+      </div>
+    </header>
+
+    <div id="alertBanner" class="today-alert" style="display:none;">
+      <i class="fas fa-exclamation-circle"></i>
+      <span id="alertMessage">📅 You have an item today!</span>
+    </div>
+
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-tab="profile">
+        <i class="fas fa-building"></i> <span>Profile</span>
+      </button>
+      <button class="nav-tab" data-tab="add">
+        <i class="fas fa-plus-circle"></i> <span id="addTabLabel">Add</span>
+      </button>
+      <button class="nav-tab" data-tab="items">
+        <i class="fas fa-list"></i> <span id="itemsTabLabel">Items</span> <span id="navItemCount">0</span>
+      </button>
+    </div>
+
+    <!-- TAB 1: PROFILE -->
+    <div id="tab-profile" class="tab-content active">
+      <section class="profile-section">
+        <h3><i class="fas fa-building" id="profileIcon" style="color:var(--primary-color);"></i> <span id="profileTitle">Company Profile</span></h3>
+        <p style="color:var(--text-muted); font-size:13px; margin-bottom:12px;" id="profileSubtitle">Enter your details for professional invoices</p>
+        
+        <div id="dynamicProfileFields">
+          <div class="form-row">
+            <div class="field">
+              <label id="labelCompanyName"><i class="fas fa-building"></i> Company Name</label>
+              <input type="text" id="companyName" placeholder="Your Company Name">
+            </div>
+            <div class="field">
+              <label id="labelOwnerName"><i class="fas fa-user-tie"></i> Owner Name</label>
+              <input type="text" id="ownerName" placeholder="John Doe">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="field">
+              <label id="labelEmail"><i class="fas fa-envelope"></i> Email</label>
+              <input type="email" id="companyEmail" placeholder="info@company.com">
+            </div>
+            <div class="field">
+              <label id="labelPhone"><i class="fas fa-phone"></i> Phone</label>
+              <input type="text" id="companyPhone" placeholder="+1 555 1234">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="field">
+              <label id="labelAddress"><i class="fas fa-location-dot"></i> Address</label>
+              <input type="text" id="companyAddress" placeholder="123 Business St, City">
+            </div>
+            <div class="field">
+              <label id="labelGst"><i class="fas fa-receipt"></i> GST/Tax Number</label>
+              <input type="text" id="companyGst" placeholder="GST-123456789">
+            </div>
+          </div>
+
+          <div id="additionalProfileFields"></div>
+          
+          <div class="form-row">
+            <div class="field" style="flex:1 0 100%;">
+              <label id="labelLogo"><i class="fas fa-image"></i> Logo</label>
+              <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <input type="file" id="logoUpload" accept="image/*" style="flex:1; min-width:150px; padding:8px; border:1px solid var(--border-input); border-radius:var(--radius-small); background:var(--input-bg); color:var(--text-dark);">
+                <button id="uploadLogoBtn" style="padding:8px 16px; background:var(--primary-color); color:white; border:none; border-radius:var(--radius-pill); cursor:pointer; font-family:inherit;">
+                  <i class="fas fa-upload"></i> Upload
+                </button>
+              </div>
+              <input type="hidden" id="companyLogo" value="">
+              <div id="logoPreview" style="margin-top:8px; display:none;">
+                <img id="logoPreviewImg" style="max-height:60px; border-radius:8px; border:1px solid var(--border-light);">
+                <button id="removeLogoBtn" style="margin-left:10px; padding:4px 12px; background:#ff4757; color:white; border:none; border-radius:var(--radius-pill); cursor:pointer; font-size:12px;">
+                  <i class="fas fa-times"></i> Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <button class="btn-save-profile" id="saveProfileBtn">
+          <i class="fas fa-save"></i> <span id="saveProfileLabel">Save Profile</span>
+        </button>
+      </section>
+    </div>
+
+    <!-- TAB 2: ADD ITEM -->
+    <div id="tab-add" class="tab-content">
+      <section class="event-form" id="addFormContainer">
+        <h3><i class="fas fa-plus-circle" style="color:var(--primary-color);"></i> <span id="addFormTitle">Add New</span></h3>
+        
+        <div id="dynamicFormFields">
+          <!-- Base Fields -->
+          <div class="form-row">
+            <div class="field">
+              <label><i class="fas fa-user"></i> <span data-key="nameLabel">Name</span></label>
+              <input type="text" id="itemName" placeholder="Enter name">
+            </div>
+            <div class="field">
+              <label><i class="fas fa-user-tie"></i> <span data-key="bookedByLabel">Booked By</span></label>
+              <input type="text" id="itemBookedBy" placeholder="Enter name">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label><i class="fas fa-phone"></i> <span data-key="contactLabel">Contact</span></label>
+              <input type="text" id="itemContact" placeholder="+1 555 6789">
+            </div>
+            <div class="field">
+              <label><i class="fas fa-map-pin"></i> <span data-key="venueLabel">Location</span></label>
+              <input type="text" id="itemLocation" placeholder="Enter location">
+            </div>
+          </div>
+
+          <!-- Date/Time Fields - Hidden for School, Construction, HR, Banking -->
+          <div id="dateTimeFields">
+            <div class="form-row">
+              <div class="field">
+                <label><i class="fas fa-calendar-day"></i> Date</label>
+                <input type="date" id="itemDate">
+              </div>
+              <div class="field">
+                <label><i class="fas fa-clock"></i> Time</label>
+                <div class="inline-group">
+                  <input type="time" id="itemTime" style="flex:2;">
+                  <select id="itemAmPm" style="flex:1; padding:10px 4px;">
+                    <option value="AM">AM</option>
+                    <option value="PM" selected>PM</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hotel Fields (Check In/Out) -->
+          <div id="hotelFields" style="display:none;">
+            <div class="form-row">
+              <div class="field">
+                <label><i class="fas fa-sign-in-alt"></i> Check In Date</label>
+                <input type="date" id="itemCheckInDate">
+              </div>
+              <div class="field">
+                <label><i class="fas fa-clock"></i> Check In Time</label>
+                <div class="inline-group">
+                  <input type="time" id="itemCheckInTime" style="flex:2;">
+                  <select id="itemCheckInAmPm" style="flex:1; padding:10px 4px;">
+                    <option value="AM">AM</option>
+                    <option value="PM" selected>PM</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label><i class="fas fa-sign-out-alt"></i> Check Out Date</label>
+                <input type="date" id="itemCheckOutDate">
+              </div>
+              <div class="field">
+                <label><i class="fas fa-clock"></i> Check Out Time</label>
+                <div class="inline-group">
+                  <input type="time" id="itemCheckOutTime" style="flex:2;">
+                  <select id="itemCheckOutAmPm" style="flex:1; padding:10px 4px;">
+                    <option value="AM">AM</option>
+                    <option value="PM" selected>PM</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rental Fields (Start/End) -->
+          <div id="rentalFields" style="display:none;">
+            <div class="form-row">
+              <div class="field">
+                <label><i class="fas fa-calendar-plus"></i> Rental Start Date</label>
+                <input type="date" id="itemRentalStart">
+              </div>
+              <div class="field">
+                <label><i class="fas fa-clock"></i> Rental Start Time</label>
+                <div class="inline-group">
+                  <input type="time" id="itemRentalStartTime" style="flex:2;">
+                  <select id="itemRentalStartAmPm" style="flex:1; padding:10px 4px;">
+                    <option value="AM">AM</option>
+                    <option value="PM" selected>PM</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label><i class="fas fa-calendar-minus"></i> Rental End Date</label>
+                <input type="date" id="itemRentalEnd">
+              </div>
+              <div class="field">
+                <label><i class="fas fa-clock"></i> Rental End Time</label>
+                <div class="inline-group">
+                  <input type="time" id="itemRentalEndTime" style="flex:2;">
+                  <select id="itemRentalEndAmPm" style="flex:1; padding:10px 4px;">
+                    <option value="AM">AM</option>
+                    <option value="PM" selected>PM</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Construction Fields (Start/End with Year) -->
+          <div id="constructionFields" style="display:none;">
+            <div class="form-row">
+              <div class="field">
+                <label><i class="fas fa-play-circle"></i> Start Date</label>
+                <input type="date" id="itemConstructionStart">
+              </div>
+              <div class="field">
+                <label><i class="fas fa-flag-checkered"></i> End Date</label>
+                <input type="date" id="itemConstructionEnd">
+              </div>
+            </div>
+          </div>
+
+          <!-- HR Fields -->
+          <div id="hrFields" style="display:none;">
+            <div class="form-row">
+              <div class="field">
+                <label><i class="fas fa-calendar-plus"></i> Joining Date</label>
+                <input type="date" id="itemJoiningDate">
+              </div>
+              <div class="field">
+                <label><i class="fas fa-image"></i> Employee Photo</label>
+                <input type="file" id="itemEmployeePhoto" accept="image/*" style="padding:6px;">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label><i class="fas fa-calendar-times"></i> Employment Status</label>
+                <select id="itemEmploymentStatus">
+                  <option value="Active">Active</option>
+                  <option value="Resigned">Resigned</option>
+                  <option value="Terminated">Terminated</option>
+                  <option value="On Leave">On Leave</option>
+                </select>
+              </div>
+              <div class="field">
+                <label><i class="fas fa-calendar-minus"></i> Resignation/End Date</label>
+                <input type="date" id="itemResignDate">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label><i class="fas fa-briefcase"></i> Job Role</label>
+                <input type="text" id="itemJobRole" placeholder="e.g. Software Engineer">
+              </div>
+              <div class="field">
+                <label><i class="fas fa-dollar-sign"></i> Monthly Salary</label>
+                <input type="text" id="itemMonthlySalary" placeholder="$5,000">
+              </div>
+            </div>
+          </div>
+
+          <!-- Banking Fields -->
+          <div id="bankingFields" style="display:none;">
+            <div class="form-row">
+              <div class="field">
+                <label><i class="fas fa-calendar-plus"></i> Account Opening Date</label>
+                <input type="date" id="itemOpeningDate">
+              </div>
+              <div class="field">
+                <label><i class="fas fa-calendar-minus"></i> Closing Date (Optional)</label>
+                <input type="date" id="itemClosingDate">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label><i class="fas fa-exchange-alt"></i> Transaction Type</label>
+                <input type="text" id="itemTransactionType" placeholder="Deposit / Withdrawal">
+              </div>
+              <div class="field">
+                <label><i class="fas fa-dollar-sign"></i> Amount</label>
+                <input type="text" id="itemAmount" placeholder="$150.00">
+              </div>
+            </div>
+          </div>
+
+          <!-- Extra Fields -->
+          <div class="form-row">
+            <div class="field">
+              <label><i class="fas fa-user-tie"></i> <span data-key="inchargeLabel">Incharge</span></label>
+              <input type="text" id="itemIncharge" placeholder="John Doe">
+            </div>
+            <div class="field">
+              <label><i class="fas fa-phone-alt"></i> <span data-key="inchargePhoneLabel">Incharge Phone</span></label>
+              <input type="text" id="itemInchargePhone" placeholder="+1 555 1234">
+            </div>
+          </div>
+
+          <!-- Extra Field -->
+          <div class="form-row">
+            <div class="field" style="flex:1 0 100%;">
+              <label><i class="fas fa-info-circle"></i> <span data-key="extraLabel">Extra</span></label>
+              <input type="text" id="itemExtra" placeholder="Enter details">
+            </div>
+          </div>
+
+          <!-- Verification Field -->
+          <div class="form-row" id="verificationField" style="display:none;">
+            <div class="field" style="flex:1 0 100%;">
+              <label><i class="fas fa-id-card"></i> Verification Details</label>
+              <input type="text" id="itemVerification" placeholder="ID Type: Aadhar/PAN/Driving License/Passport, ID Number: XXXXX">
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="form-row">
+            <div class="field" style="flex:1 0 100%;">
+              <label><i class="fas fa-map"></i> Address</label>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <input type="text" id="itemAddress" placeholder="Full address or pick from map" style="flex:2; min-width:150px;">
+                <button id="openMapPickerBtn" class="btn-pick-location">
+                  <i class="fas fa-map-pin"></i> Pick from Map
+                </button>
+              </div>
+              <div id="miniMapContainer" style="height:180px; margin-top:8px; border-radius:12px; overflow:hidden; border:1px solid var(--border-light);"></div>
+            </div>
+          </div>
+
+          <!-- Priority & Type -->
+          <div class="form-row">
+            <div class="field">
+              <label><i class="fas fa-flag"></i> Priority</label>
+              <select id="itemPriority">
+                <option value="High">🔴 High</option>
+                <option value="Medium" selected>🟡 Medium</option>
+                <option value="Low">🟢 Low</option>
+              </select>
+            </div>
+            <div class="field">
+              <label><i class="fas fa-tag"></i> Type</label>
+              <select id="itemType">
+                <option value="General">General</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-add" id="addItemBtn">
+          <i class="fas fa-plus-circle"></i> <span id="addButtonLabel">Add Item</span>
+        </button>
+
+        <div class="quick-actions">
+          <button id="quickAddBtn" class="btn-quick"><i class="fas fa-bolt"></i> Quick Add</button>
+          <button id="templateSaveBtn" class="btn-quick"><i class="fas fa-save"></i> Save Template</button>
+          <button id="templateLoadBtn" class="btn-quick"><i class="fas fa-folder-open"></i> Load Template</button>
+          <button id="emergencyBtn" class="btn-quick emergency"><i class="fas fa-shield-alt"></i> Emergency Kit</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB 3: ITEMS LIST -->
+    <div id="tab-items" class="tab-content">
+      <div class="events-header">
+        <h3><i class="fas fa-list-ul" style="color:var(--primary-color);"></i> <span id="itemsListTitle">All Items</span></h3>
+        <span id="itemCounter">0</span>
+      </div>
+      
+      <div id="itemListContainer">
+        <div class="empty-message">
+          <i class="far fa-calendar-times"></i>
+          <br>No items yet. Add one!
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer-note">
+      <i class="fas fa-mobile-alt"></i> Universal Management System &bull; v4.0.0
+    </footer>
+  </div>
+
+  <!-- MAP PICKER MODAL -->
+  <div id="mapPickerModal" class="map-modal" style="display:none;">
+    <div class="map-modal-content">
+      <div class="map-modal-header">
+        <h3><i class="fas fa-map-pin"></i> Pick Location on Map</h3>
+        <button class="map-modal-close" id="closeMapPicker"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="mapPickerContainer" style="height:400px; border-radius:12px; overflow:hidden;"></div>
+      <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+        <input type="text" id="pickedAddress" placeholder="Click on map to fetch address" style="flex:2; padding:10px; border:1px solid var(--border-input); border-radius:12px; min-width:150px; background:var(--input-bg); color:var(--text-dark);">
+        <button id="confirmLocationBtn" style="flex:0 0 auto; padding:10px 24px; border:none; border-radius:20px; background:#2ed573; color:white; cursor:pointer; font-weight:600;">
+          <i class="fas fa-check"></i> Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIBRARIES -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+  
+</body>
+</html>
